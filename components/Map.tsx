@@ -1,14 +1,16 @@
 'use client';
 
 import L from 'leaflet';
-import MarkerIcon from '../node_modules/leaflet/dist/images/marker-icon.png';
-import MarkerShadow from '../node_modules/leaflet/dist/images/marker-shadow.png';
 import 'leaflet/dist/leaflet.css';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import { useState } from 'react';
 
+// Use Leaflet CDN URLs for marker icons
+const markerIconUrl = 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon.png';
+const markerShadowUrl = 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-shadow.png';
+
 const Map = () => {
-    const [coord] = useState([20.5937, 78.9629]);
+    const [coord] = useState<[number, number]>([20.5937, 78.9629]);
 
     const markers = [
         { position: [28.6139, 77.209], label: "New Delhi" },
@@ -35,12 +37,12 @@ const Map = () => {
                     key={index}
                     icon={
                         new L.Icon({
-                            iconUrl: MarkerIcon.src,
-                            iconRetinaUrl: MarkerIcon.src,
+                            iconUrl: markerIconUrl,
+                            iconRetinaUrl: markerIconUrl,
                             iconSize: [25, 41],
                             iconAnchor: [12.5, 41],
                             popupAnchor: [0, -41],
-                            shadowUrl: MarkerShadow.src,
+                            shadowUrl: markerShadowUrl,
                             shadowSize: [41, 41],
                         })
                     }

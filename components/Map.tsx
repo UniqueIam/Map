@@ -9,9 +9,13 @@ import { useState } from 'react';
 const markerIconUrl = 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon.png';
 const markerShadowUrl = 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-shadow.png';
 
-const Map = () => {
-    const [coord] = useState<[number, number]>([20.5937, 78.9629]);
+// Define coordinates as [latitude, longitude]
+const defaultCoord: [number, number] = [20.5937, 78.9629];
 
+const Map = () => {
+    const [coord] = useState(defaultCoord);
+
+    // Array of markers with position and label
     const markers = [
         { position: [28.6139, 77.209], label: "New Delhi" },
         { position: [19.076, 72.8777], label: "Mumbai" },
@@ -46,7 +50,7 @@ const Map = () => {
                             shadowSize: [41, 41],
                         })
                     }
-                    position={marker.position}
+                    position={marker.position as [number, number]} // Ensure the position is correctly typed
                 >
                     <Popup>{marker.label}</Popup>
                 </Marker>
